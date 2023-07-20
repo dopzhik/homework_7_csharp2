@@ -22,7 +22,7 @@ int[,] GenerateArray2D(int rows, int cols)
     {
         for (int j = 0; j < array.GetLength(1); j++)
         {
-            array[i, j] = rnd.Next(0,9);
+            array[i, j] = rnd.Next(0, 9);
         }
     }
     return array;
@@ -41,24 +41,24 @@ void PrintArray2D(int[,] array)
     System.Console.WriteLine();
 }
 
-void ItemPosition(int[,] array)
+void ItemPosition(int[,] array, int row, int col)
 {
-    int row = ReadInt("Введите позицию строки => ");
-    int col = ReadInt("Введите позицию столбца => ");
-    if (row < 0 || col < 0)
+    if (row <= 0 || col <= 0)
     {
-        System.Console.WriteLine("Позиция не может быть отрицательным числом");
+        System.Console.WriteLine("Позиция положительным числом");
     }
-    else if (row >= array.GetLength(0) || col >= array.GetLength(1))
+    else if (row > array.GetLength(0) || col > array.GetLength(1))
     {
         System.Console.WriteLine("Такого числа в массиве нет");
     }
     else
     {
-        System.Console.WriteLine($"{row}, {col} => {array[row, col]}");
+        System.Console.WriteLine($"{row}, {col} => {array[row-1, col-1]}");
     }
 }
 
 int[,] currentarray = GenerateArray2D(5, 6);
 PrintArray2D(currentarray);
-ItemPosition(currentarray);
+int row = ReadInt("Введите позицию строки => ");
+int col = ReadInt("Введите позицию столбца => ");
+ItemPosition(currentarray, row, col);
